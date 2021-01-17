@@ -13,7 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: teste
-        run: echo ${{ github.event.client_payload.repository }} || ${{ github.event.client_payload.branch }} || ${{ github.event.client_payload.tagName }} || 
+        run: echo ${{ github.event.client_payload.repository }} || ${{ github.event.client_payload.branch }} || ${{ github.event.client_payload.tagName }}
+         
          
       - name: Checkout openbanking repo
         uses: actions/checkout@master
