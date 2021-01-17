@@ -13,7 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: teste
-        run: echo ${{ github.event.client_payload.example-key }}
+        run: echo ${{ github.event.client_payload.release-tag }}
+             echo ${{ github.event.client_payload.branch-source }}
          
       - name: Checkout
         uses: actions/checkout@v2
