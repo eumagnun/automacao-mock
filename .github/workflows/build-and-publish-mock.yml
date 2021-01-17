@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: teste
-        run: echo ${{ github.event.client_payload.github }}
+        run: echo ${{ github.event.client_payload.github.ref }}
          
       - name: Checkout
         uses: actions/checkout@v2
@@ -27,7 +27,7 @@ jobs:
              
       - name: Get the release version
         id: get_version
-        run: echo ::set-output name=VERSION::${github.event.client_payload.github/refs\/tags\//}
+        run: echo ::set-output name=VERSION::${github.event.client_payload.github.ref/refs\/tags\//}
         shell: bash 
         
       - uses: docker/setup-buildx-action@v1         
