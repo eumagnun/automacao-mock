@@ -1,8 +1,8 @@
 name: Build and publish ApiMock
 
 on:
-  release:
-    types: [published]
+    repository_dispatch:
+        types: [release-published]
 
 env:
     DOCKER_HUB_DOMAIN: "eumagnun"
