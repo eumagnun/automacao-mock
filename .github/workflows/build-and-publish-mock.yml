@@ -15,8 +15,10 @@ jobs:
       - name: teste
         run: echo ${{ github.event.client_payload.github.ref }}
          
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Checkout openbanking repo
+        uses: actions/checkout@master
+        with:
+          repository: eumagnun/areadesenvolvedor
 
       - name: Login to DockerHub
         uses: docker/login-action@v1
