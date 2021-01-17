@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: teste
-        run: echo ${{ github.event.client_payload.github.ref }}
+        run: echo ${{ github.event.client_payload.repository }} || ${{ github.event.client_payload.branch }} || ${{ github.event.client_payload.tagName }} || 
          
       - name: Checkout openbanking repo
         uses: actions/checkout@master
@@ -25,13 +25,7 @@ jobs:
         with: 
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
-          
-             
-      - name: Get the release version
-        id: get_version
-        run: echo ::set-output name=VERSION::${github.event.client_payload.github.ref/refs\/tags\//}
-        shell: bash 
-        
+                
       - uses: docker/setup-buildx-action@v1         
         
       - name: Build and push docker image for Open Banking Admin Api
@@ -40,7 +34,7 @@ jobs:
         with:
           context: .
           file: ./documentation/mock/swagger_admin_apis/Dockerfile
-          tags: ${{ env.DOCKER_HUB_DOMAIN }}/admin-api:${{ steps.get_version.outputs.VERSION }}
+          tags: ${{ env.DOCKER_HUB_DOMAIN }}/admin-api:${{ github.event.client_payload.tagName }}
           push: true
         
       - name: Build and push docker image for Open Banking Channels Api
@@ -49,7 +43,7 @@ jobs:
         with:
           context: .
           file: ./documentation/mock/swagger_channels_apis/Dockerfile
-          tags: ${{ env.DOCKER_HUB_DOMAIN }}/channels-api:${{ steps.get_version.outputs.VERSION }}
+          tags: ${{ env.DOCKER_HUB_DOMAIN }}/channels-api:${{ github.event.client_payload.tagName }}
           push: true
         
       - name: Build and push docker image for Open Banking Common Api
@@ -58,7 +52,7 @@ jobs:
         with:
           context: .
           file: ./documentation/mock/swagger_common_apis/Dockerfile
-          tags: ${{ env.DOCKER_HUB_DOMAIN }}/common-api:${{ steps.get_version.outputs.VERSION }}
+          tags: ${{ env.DOCKER_HUB_DOMAIN }}/common-api:${{ github.event.client_payload.tagName }}
           push: true
         
       - name: Build and push docker image for Open Banking Products Services Api
@@ -67,5 +61,5 @@ jobs:
         with:
           context: .
           file: ./documentation/mock/swagger_products_services_apis/Dockerfile
-          tags: ${{ env.DOCKER_HUB_DOMAIN }}/products-services-api:${{ steps.get_version.outputs.VERSION }}
+          tags: ${{ env.DOCKER_HUB_DOMAIN }}/products-services-api:${{ github.event.client_payload.tagName }}
           push: true
