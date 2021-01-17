@@ -12,6 +12,8 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
+      - name: teste
+        run: echo ${{ github.event.client_payload.example-key }}
          
       - name: Checkout
         uses: actions/checkout@v2
