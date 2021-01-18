@@ -55,7 +55,7 @@ jobs:
           file: ./Dockerfile
           tags: ${{ env.DOCKER_HUB_DOMAIN }}/admin-api:${{ github.event.client_payload.tagName }}
           build-args: |
-            api_swagger_path=openbanking/areadesenvolvedor/documentation/source/swagger/swagger_admin_apis.yaml
+            api_swagger_path=openbanking/documentation/source/swagger/swagger_admin_apis.yaml
             api_port=${{ env.ADMIN_API_PORT }}
           push: true
         
