@@ -35,10 +35,7 @@ jobs:
         with:
             repository: ${{ github.event.client_payload.repository }}
             ref:  ${{ github.event.client_payload.tagName }}
-            path: openbanking
-              
-      - name: teste2
-        run: echo ${{ toJson(github) }}                
+            path: openbanking        
       
       - name: Login to DockerHub
         uses: docker/login-action@v1
@@ -55,11 +52,10 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          run: wget ${{format( env.ADMIN_API_SWAGGER , github.event.client_payload.tagName)}}
           file: ./Dockerfile
           tags: ${{ env.DOCKER_HUB_DOMAIN }}/admin-api:${{ github.event.client_payload.tagName }}
           build-args: |
-            api_swagger_path= ${{format( env.ADMIN_API_SWAGGER , github.event.client_payload.tagName)}}
+            api_swagger_path= /openbanking/areadesenvolvedor/documentation/source/swagger/swagger_admin_apis.yaml
             api_port=${{ env.ADMIN_API_PORT }}
           push: true
         
