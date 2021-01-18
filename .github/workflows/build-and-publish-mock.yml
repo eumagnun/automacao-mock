@@ -81,11 +81,3 @@ jobs:
             api_swagger_name= ${{format( env.PRODUCTS_SERVICES_API_SWAGGER , github.event.client_payload.tagName)}}
             api_port=${{ env.PRODUCTS_SERVICES_API_PORT }}
           push: true
-
-      - name: Update version docker compose
-        run: echo "API_VERSION=${{ github.event.client_payload.tagName }}" > "/version/.env"
-
-      - name: Save docker compose update
-        uses: mikeal/publish-to-github-action@1.0.0
-        env:
-            GITHUB_TOKEN: ${{ secrets.ACTIONS_UPDATES_COMMIT }}
