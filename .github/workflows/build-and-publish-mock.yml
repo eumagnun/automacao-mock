@@ -46,7 +46,39 @@ jobs:
           tags: ${{ env.DOCKER_HUB_DOMAIN }}/admin-api:${{ github.event.client_payload.tagName }}
           build-args: |
             api_swagger_name= ${{format( env.ADMIN_API_SWAGGER , github.event.client_payload.tagName)}}
-            
             api_port=${{ env.ADMIN_API_PORT }}
           push: true
-      
+        
+      - name: Build and push docker image for Open Banking Channels Api
+        id: docker_build_channels_api
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          tags: ${{ env.DOCKER_HUB_DOMAIN }}/channels-api:${{ github.event.client_payload.tagName }}
+          build-args: |
+            api_swagger_name= ${{format( env.CHANNELS_API_SWAGGER , github.event.client_payload.tagName)}}
+            api_port=${{ env.CHANNELS_API_PORT }}
+          push: true
+        
+      - name: Build and push docker image for Open Banking Common Api
+        id: docker_build_common_api
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          tags: ${{ env.DOCKER_HUB_DOMAIN }}/common-api:${{ github.event.client_payload.tagName }}
+          build-args: |
+            api_swagger_name= ${{format( env.COMMON_API_SWAGGER , github.event.client_payload.tagName)}}
+            api_port=${{ env.COMMON_API_PORT }}
+          push: true
+        
+      - name: Build and push docker image for Open Banking Products Services Api
+        id: docker_build_products_services_api
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          tags: ${{ env.DOCKER_HUB_DOMAIN }}/products-services-api:${{ github.event.client_payload.tagName }}
+          build-args: |
+            api_swagger_name= ${{format( env.PRODUCTS_SERVICES_API_SWAGGER , github.event.client_payload.tagName)}}
+            api_port=${{ env.PRODUCTS_SERVICES_API_PORT }}
+          push: true
+
