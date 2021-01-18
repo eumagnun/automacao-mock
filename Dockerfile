@@ -4,5 +4,7 @@ ARG api_swagger_path
 ARG api_port
 
 ENV OPENAPI_MOCK_PORT=${api_port}
+ENV OPENAPI_MOCK_SPECIFICATION_URL =${api_swagger_path}
 
-CMD ["serve", "--specification-url", ${api_swagger_path}]
+CMD ["serve"]
+
