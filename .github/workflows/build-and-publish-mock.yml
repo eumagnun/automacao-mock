@@ -6,9 +6,8 @@ on:
 
 env:
     DOCKER_HUB_DOMAIN: "eumagnun"
-    GITHUB_DOMAIN: "https://github.com/eumagnun"  
 
-    ADMIN_API_SWAGGER: ${{GITHUB_DOMAIN}}"/areadesenvolvedor/blob/{0}/documentation/source/swagger/swagger_admin_apis.yaml"
+    ADMIN_API_SWAGGER: "https://github.com/eumagnun/areadesenvolvedor/blob/{0}/documentation/source/swagger/swagger_admin_apis.yaml"
     ADMIN_API_PORT: "7001"
 
     CHANNELS_API_SWAGGER: "https://github.com/eumagnun/areadesenvolvedor/blob/{0}/documentation/source/swagger/swagger_channels_apis.yaml"
