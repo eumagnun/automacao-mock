@@ -6,6 +6,19 @@ on:
 
 env:
     DOCKER_HUB_DOMAIN: "eumagnun"
+    GITHUB_DOMAIN: "https://github.com/eumagnun"  
+
+    ADMIN_API_SWAGGER: ${{env.GITHUB_DOMAIN}}"/areadesenvolvedor/blob/{0}/documentation/source/swagger/swagger_admin_apis.yaml"
+    ADMIN_API_PORT: "7001"
+
+    CHANNELS_API_SWAGGER: "https://github.com/eumagnun/areadesenvolvedor/blob/{0}/documentation/source/swagger/swagger_channels_apis.yaml"
+    CHANNELS_API_PORT: "7002"
+
+    COMMON_API_SWAGGER: "https://github.com/eumagnun/areadesenvolvedor/blob/{0}/documentation/source/swagger/swagger_common_apis.yaml"
+    COMMON_API_PORT: "7003"
+
+    PRODUCTS_SERVICES_API_SWAGGER: "https://github.com/eumagnun/areadesenvolvedor/blob/{0}/documentation/source/swagger/swagger_products_services_apis.yaml"
+    PRODUCTS_SERVICES_API_PORT: "7004"
 jobs:
 
   build:
@@ -34,33 +47,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./documentation/mock/swagger_admin_apis/Dockerfile
           tags: ${{ env.DOCKER_HUB_DOMAIN }}/admin-api:${{ github.event.client_payload.tagName }}
+          build-args: |
+            api_swagger_name=format( ${{ env.ADMIN_API_SWAGGER }}, github.event.client_payload.tagName
+            api_port=${{ env.ADMIN_API_PORT }}
           push: true
-        
-      - name: Build and push docker image for Open Banking Channels Api
-        id: docker_build_channels_api
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./documentation/mock/swagger_channels_apis/Dockerfile
-          tags: ${{ env.DOCKER_HUB_DOMAIN }}/channels-api:${{ github.event.client_payload.tagName }}
-          push: true
-        
-      - name: Build and push docker image for Open Banking Common Api
-        id: docker_build_common_api
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./documentation/mock/swagger_common_apis/Dockerfile
-          tags: ${{ env.DOCKER_HUB_DOMAIN }}/common-api:${{ github.event.client_payload.tagName }}
-          push: true
-        
-      - name: Build and push docker image for Open Banking Products Services Api
-        id: docker_build_products_services_api
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          file: ./documentation/mock/swagger_products_services_apis/Dockerfile
-          tags: ${{ env.DOCKER_HUB_DOMAIN }}/products-services-api:${{ github.event.client_payload.tagName }}
-          push: true
+      
