@@ -89,4 +89,10 @@ jobs:
           push: true
 
       - name: Update version mock in file
-        run: echo API_VERSION=${{ github.event.client_payload.tagName }} > .env
+        run: |
+          echo API_VERSION=${{ github.event.client_payload.tagName }} > .env
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated"
+          git push
