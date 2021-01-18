@@ -82,3 +82,9 @@ jobs:
             api_port=${{ env.PRODUCTS_SERVICES_API_PORT }}
           push: true
 
+      - name: Update version docker composed
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "^API_VERSION"
+          replace: "API_VERSION=${{ github.event.client_payload.tagName }}"
+          include: ".env"
