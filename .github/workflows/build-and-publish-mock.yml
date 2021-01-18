@@ -26,7 +26,10 @@ jobs:
     steps:
       - name: teste
         run: echo ${{ github.event.client_payload.repository }} || ${{ github.event.client_payload.branch }} || ${{ github.event.client_payload.tagName }}
-         
+
+      - name: Checkout
+        uses: actions/checkout@v2
+                 
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with: 
