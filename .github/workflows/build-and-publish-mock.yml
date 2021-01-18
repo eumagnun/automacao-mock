@@ -29,7 +29,17 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
-                 
+
+      - name: Checkout openbanking repo
+        uses: actions/checkout@v2
+        with:
+            repository: ${{ github.event.client_payload.repository }}
+            ref:  ${{ github.event.client_payload.tagName }}
+            path: openbanking
+              
+      - name: teste2
+        run: echo ${toJson(github)}                 
+      
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with: 
