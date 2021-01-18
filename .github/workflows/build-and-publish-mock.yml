@@ -87,3 +87,6 @@ jobs:
             api_swagger_path=openbanking/documentation/source/swagger/swagger_products_services_apis.yaml
             api_port=${{ env.PRODUCTS_SERVICES_API_PORT }}
           push: true
+
+      - name: Update version mock in file
+        run: echo API_VERSION=${{ github.event.client_payload.tagName }} > .env
