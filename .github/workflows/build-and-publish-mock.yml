@@ -36,7 +36,9 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
                 
-      - uses: docker/setup-buildx-action@v1         
+      - uses: docker/setup-buildx-action@v1   
+        with:
+            buildkitd-flags: --debug      
         
       - name: Build and push docker image for Open Banking Admin Api
         id: docker_build_admin_api
