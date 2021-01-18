@@ -45,6 +45,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          run: wget ${{format( env.ADMIN_API_SWAGGER , github.event.client_payload.tagName)}}
           file: ./Dockerfile
           tags: ${{ env.DOCKER_HUB_DOMAIN }}/admin-api:${{ github.event.client_payload.tagName }}
           build-args: |
