@@ -7,16 +7,16 @@ on:
 env:
     DOCKER_HUB_DOMAIN: "eumagnun"
 
-    ADMIN_API_SWAGGER: "https://github.com/eumagnun/areadesenvolvedor/blob/{0}/documentation/source/swagger/swagger_admin_apis.yaml"
+    ADMIN_API_SWAGGER: "https://raw.githubusercontent.com/eumagnun/areadesenvolvedor/{0}/documentation/source/swagger/swagger_admin_apis.yaml"
     ADMIN_API_PORT: "7001"
 
-    CHANNELS_API_SWAGGER: "https://github.com/eumagnun/areadesenvolvedor/blob/{0}/documentation/source/swagger/swagger_channels_apis.yaml"
+    CHANNELS_API_SWAGGER: "https://raw.githubusercontent.com/eumagnun/areadesenvolvedor/{0}/documentation/source/swagger/swagger_channels_apis.yaml"
     CHANNELS_API_PORT: "7002"
 
-    COMMON_API_SWAGGER: "https://github.com/eumagnun/areadesenvolvedor/blob/{0}/documentation/source/swagger/swagger_common_apis.yaml"
+    COMMON_API_SWAGGER: "https://raw.githubusercontent.com/eumagnun/areadesenvolvedor/{0}/documentation/source/swagger/swagger_common_apis.yaml"
     COMMON_API_PORT: "7003"
 
-    PRODUCTS_SERVICES_API_SWAGGER: "https://github.com/eumagnun/areadesenvolvedor/blob/{0}/documentation/source/swagger/swagger_products_services_apis.yaml"
+    PRODUCTS_SERVICES_API_SWAGGER: "https://raw.githubusercontent.com/eumagnun/areadesenvolvedor/{0}/documentation/source/swagger/swagger_products_services_apis.yaml"
     PRODUCTS_SERVICES_API_PORT: "7004"
 jobs:
 
