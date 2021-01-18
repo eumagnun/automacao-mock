@@ -1,0 +1,21 @@
+
+services:
+  admin-api:
+    image: "eumagnun/admin-api"
+    ports:
+      - "7001:7001"  
+      
+  channels-api:
+    image: "eumagnun/channels-api"
+    ports:
+      - "7002:7002"
+  
+  common-api:
+    image: "eumagnun/common-api"
+    ports:
+      - "7003:7003"
+  
+  products-services-api:
+    image: "eumagnun/products-services-api"    
+    ports:
+      - "7004:7004"
