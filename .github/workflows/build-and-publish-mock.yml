@@ -43,6 +43,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          file: ./Dockerfile
           tags: ${{ env.DOCKER_HUB_DOMAIN }}/admin-api:${{ github.event.client_payload.tagName }}
           build-args: |
             api_swagger_path= ${{format( env.ADMIN_API_SWAGGER , github.event.client_payload.tagName)}}
@@ -54,6 +55,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          file: ./Dockerfile
           tags: ${{ env.DOCKER_HUB_DOMAIN }}/channels-api:${{ github.event.client_payload.tagName }}
           build-args: |
             api_swagger_path= ${{format( env.CHANNELS_API_SWAGGER , github.event.client_payload.tagName)}}
@@ -65,6 +67,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          file: ./Dockerfile
           tags: ${{ env.DOCKER_HUB_DOMAIN }}/common-api:${{ github.event.client_payload.tagName }}
           build-args: |
             api_swagger_path= ${{format( env.COMMON_API_SWAGGER , github.event.client_payload.tagName)}}
@@ -76,6 +79,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
+          file: ./Dockerfile
           tags: ${{ env.DOCKER_HUB_DOMAIN }}/products-services-api:${{ github.event.client_payload.tagName }}
           build-args: |
             api_swagger_path= ${{format( env.PRODUCTS_SERVICES_API_SWAGGER , github.event.client_payload.tagName)}}
