@@ -17,8 +17,6 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: teste
-        run: echo ${{format( env.ADMIN_API_SWAGGER , github.event.client_payload.tagName)}}
 
       - name: Checkout
         uses: actions/checkout@v2
