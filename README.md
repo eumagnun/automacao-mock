@@ -13,15 +13,16 @@ http://localhost:7004/open-banking/products-services/v2/business-unarranged-acco
 # Project: openapi-mock-open-banking
 
 ## About this
-This project allows users to run Open Banking using:
-- [Docker based on local machines](#getting-started-to-run-on-local-machine) or;
-- [PWD - Play with Docker](#getting-started-to-run-in-the-cloud)*.
+This project allows users to run Open Banking Mocked Apis. This mocks are made with [OpenAPI Mock Server](https://github.com/muonsoft/openapi-mock).
+
+Options to run:
+- 1 - [Docker based on local machines](#getting-started-to-run-on-local-machine) or;
+- 2 - [PWD - Play with Docker](#getting-started-to-run-in-the-cloud)*.
 
 *PWD is a Docker playground which allows users to run Docker commands in a matter of seconds.
 
 
 ## Dependencies
-* [OpenAPI Mock Server](https://github.com/muonsoft/openapi-mock)
 * [Docker](https://www.docker.com/)
 * [PWD - Play With Docker](https://labs.play-with-docker.com/) (It's alternative to expose the mock through internet running in the cloud).
 
@@ -29,30 +30,40 @@ This project allows users to run Open Banking using:
 ## Getting started to run on local machine
 1. Download and install [Docker](https://www.docker.com/).
 
-2. Downloads an image of [OpenAPI Mock Server](https://github.com/muonsoft/openapi-mock)
+2. Fork this repository on Github.
 
+3. Clone your forked repository (not our original one) to your hard drive with git clone https://github.com/YOURUSERNAME/automacao-mock.git
+
+4. Access directory automacao-mock. 
 ```bash
-docker pull muonsoft/openapi-mock
+cd automacao-mock
 ```
 
-3. Fork this repository on Github.
+5. Run the command bellow to start all containers. We have a container for each Open Banking Api. 
 
-4. Clone your forked repository (not our original one) to your hard drive with git clone https://github.com/YOURUSERNAME/openapi-mock-open-banking.git
-
-5. Access directory openapi-mock-open-banking. 
-```bash
-cd openapi-mock-open-banking
-```
-
-6. Run the image of openapi-mock-open-banking.
 ```bash
 docker-compose up
 ```
+This command will run the containers with de last released version of swaggers.
 
-Alternatively it's possible to run as a docker command:
+Alternatively it's possible to run a docker container individually.Example:
 
 ```bash
-docker run -p 8080:8080 -e "OPENAPI_MOCK_SPECIFICATION_URL=https://raw.githubusercontent.com/luankevinferreira/areadesenvolvedor-widdershins/master/documentation/source/swagger/swagger_open_banking_apis.yaml" -e "OPENAPI_MOCK_USE_EXAMPLES=if_present" --rm muonsoft/openapi-mock
+docker run -p [PORT:PORT] eumagnun/admin-api:[VERSAO]
+```
+
+[PORT]: Each API-MOCK runs ina specific port as follows:
+
+- ADMIN_API_PORT: "7001"
+- CHANNELS_API_PORT: "7002"
+- COMMON_API_PORT: "7003"
+- PRODUCTS_SERVICES_API_PORT: "7004"
+
+[VERSION]: The version of Open Banking Specification. This field is required, today we´re not publishing a tag 'latest'.<br/>
+
+Follows bellow a example:
+```bash
+docker run -p 7001:7001 eumagnun/admin-api:ver2020.01.18.002
 ```
 
 
@@ -65,7 +76,7 @@ http://127.0.0.1:8080/open-banking/discovery/v1/status
 Alternatively it's possible check if run using this command to test:
 
 ```bash
-curl 'http://127.0.0.1:8080/open-banking/discovery/v1/status'
+curl http://localhost:7001/open-banking/admin/v1/metrics
 ```
 
 If ok, one message like that is appear:
@@ -90,7 +101,7 @@ If ok, one message like that is appear:
 4. Downloads an image of [OpenAPI Mock Server](https://github.com/muonsoft/openapi-mock)
 
 ```bash
-docker pull muonsoft/openapi-mock
+docker pull eumagnun/admin-api:ver2020.01.18.002
 ```
 
 ![Figura 5](/img/fig-05.jpg)
@@ -101,27 +112,27 @@ docker pull muonsoft/openapi-mock
 
 ![Figura 11](/img/fig-11.jpg)
 
-7. Access directory openapi-mock-open-banking. 
+7. Access directory automacao-mock. 
 ```bash
-cd openapi-mock-open-banking
+cd automacao-mock
 ```
 
 ![Figura 6](/img/fig-06.jpg)
 
-8. Run the image of openapi-mock-open-banking
+8. Run the image of automacao-mock
 ```bash
 docker-compose up
 ```
 
 ![Figura 7](/img/fig-07.jpg)
 
-Alternatively it's possible to run as a docker command:
+Alternatively it's possible to run as a docker command:<br/>
 
 ```bash
-docker run -p 8080:8080 -e "OPENAPI_MOCK_SPECIFICATION_URL=https://raw.githubusercontent.com/luankevinferreira/areadesenvolvedor-widdershins/master/documentation/source/swagger/swagger_open_banking_apis.yaml" -e "OPENAPI_MOCK_USE_EXAMPLES=if_present" --rm muonsoft/openapi-mock
+docker run -p 8080:7001 eumagnun/admin-api:ver2020.01.18.002
 ```
 
-9. At the end of the process you should see the message such as "Creating openapi_mock ... done". The option -p 8080:8080 exposes the container port 8080 as the host port 8080 to the world.
+9. At the end of the process you should see the message such as "Creating openapi_mock ... done". The option -p 8080:7001 exposes the container port 7001 as the host port 8080 to the world.
 
 ![Figura 8](/img/fig-08.jpg)
 
